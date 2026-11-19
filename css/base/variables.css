@@ -1,0 +1,188 @@
+/*
+  StudentHub — Shared Design Tokens
+  Location: css/base/variables.css
+
+  PURPOSE
+  - Central source for shared colors, typography, spacing, radii, shadows,
+    and common component dimensions.
+  - Values marked "existing" were taken from the Figma Make-generated
+    StudentHub styles inspected during design review.
+  - Spacing/type/radius scales are reusable tokens organized from values
+    already recurring in the generated UI. They are not a mandate to
+    replace every component-specific value immediately.
+
+  TOKEN GUIDE
+  Colors:
+    --primary             Main brand/action color
+    --primary-2           Secondary brand shade
+    --primary-soft        Soft primary background
+    --teal                Teal accent
+    --bg                  Main page background
+    --surface             Main card/panel background
+    --surface-2           Secondary surface
+    --text                Main text
+    --muted               Secondary text
+    --line                Borders/dividers
+    --sidebar             Sidebar background
+    --shadow / --shadow-lg Shared elevation
+
+  Typography:
+    --font-body           DM Sans, for general interface text
+    --font-heading        Manrope, for headings and prominent text
+    --font-size-*         Reusable type sizes
+    --font-weight-*       Available font weights
+
+  Spacing:
+    --space-*             Reusable spacing scale
+
+  Shape and elevation:
+    --radius-*            Reusable corner-radius scale
+    --shadow-*            Shared shadow styles
+
+  Dimensions:
+    --sidebar-width       Expanded sidebar width
+    --sidebar-width-collapsed
+    --button-height       Minimum standard button height
+
+  Dark mode:
+    Apply the .dark class to the root element/container to activate
+    the dark palette, matching the generated Figma Make stylesheet.
+*/
+
+:root {
+  /* =========================================================
+     BRAND & THEME COLORS — existing Figma Make values
+     ========================================================= */
+  --primary: #5146e5;
+  --primary-2: #6f65eb;
+  --primary-soft: #eeedff;
+  --teal: #14b8a6;
+
+  /* =========================================================
+     LIGHT THEME — existing Figma Make values
+     ========================================================= */
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #fafbfe;
+  --text: #172033;
+  --muted: #697386;
+  --line: #e8eaf1;
+  --sidebar: #13182a;
+
+  /* =========================================================
+     DARK THEME DEFAULTS / LIGHT THEME SHADOWS
+     ========================================================= */
+  --shadow: 0 8px 30px rgba(28, 34, 58, 0.06);
+  --shadow-lg: 0 24px 70px rgba(21, 25, 49, 0.18);
+
+  /* =========================================================
+     TYPOGRAPHY — font families and weights from generated CSS
+     ========================================================= */
+  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Manrope", sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /*
+    Reusable font-size tokens.
+    These are selected from sizes already used in the generated UI;
+    component-specific sizes may remain local when needed.
+  */
+  --font-size-2xs: 8px;
+  --font-size-xs: 9px;
+  --font-size-sm: 10px;
+  --font-size-md-sm: 11px;
+  --font-size-md: 12px;
+  --font-size-base: 13px;
+  --font-size-lg: 15px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 24px;
+  --font-size-display: 32px;
+
+  /* =========================================================
+     SPACING — reusable scale organized from recurring UI values
+     ========================================================= */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* =========================================================
+     BORDER RADIUS — reusable values based on existing UI shapes
+     ========================================================= */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 18px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+
+  /* =========================================================
+     SHADOWS — existing Figma Make values
+     ========================================================= */
+  --shadow-card: var(--shadow);
+  --shadow-elevated: var(--shadow-lg);
+
+  /* =========================================================
+     COMMON COMPONENT DIMENSIONS — existing Figma Make values
+     ========================================================= */
+  --sidebar-width: 252px;
+  --sidebar-width-collapsed: 76px;
+  --button-height: 42px;
+
+  /* =========================================================
+     COURSE IDENTIFICATION COLORS — existing App.tsx values
+     Keep these available for course badges/cards/indicators.
+     ========================================================= */
+  --course-color-1: #5b5bd6;
+  --course-color-2: #0f9f8f;
+  --course-color-3: #e58a3a;
+  --course-color-4: #df5d78;
+  --course-color-5: #6078ea;
+  --course-color-6: #845ec2;
+
+  /* Existing fallback colors used by course/session UI */
+  --course-color-fallback: #64748b;
+  --session-color-fallback: #5146e5;
+}
+
+/* =========================================================
+   DARK THEME — existing Figma Make values
+   Keep the same .dark selector used by the generated styles.
+   ========================================================= */
+.dark {
+  --bg: #101320;
+  --surface: #181c2c;
+  --surface-2: #1d2234;
+  --text: #edf0f8;
+  --muted: #9ba5ba;
+  --line: #2b3145;
+  --primary-soft: #292654;
+  --sidebar: #0b0e19;
+
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+/*
+  Integration note:
+  Import this file once from the project's global stylesheet, for example:
+      @import url("./base/variables.css");
+
+  If main.css is in css/, use:
+      @import "./base/variables.css";
+
+  Do not import it from every page stylesheet. Keep one global import.
+*/
