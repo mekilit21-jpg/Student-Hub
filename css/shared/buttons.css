@@ -1,0 +1,389 @@
+/* =========================================================
+   STUDENTHUB — SHARED BUTTON SYSTEM
+   Location: css/shared/buttons.css
+
+  /* =========================================================
+   CLASS NAMES & USAGE
+
+   .btn           : Base button layout and styling
+   .btn-sm        : Smaller button size
+   .btn-primary   : Main action button
+   .btn-secondary : Secondary action button
+   .btn-danger    : Delete or destructive action button
+   ========================================================= */
+
+
+/* =========================================================
+   1. BASE BUTTON STYLES
+   ========================================================= */
+
+.btn,
+.primary-button,
+.secondary-button,
+.danger-button {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  min-height: var(--button-height);
+  padding: 0 var(--space-4);
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   2. PRIMARY BUTTON
+   Main actions: Add Task, Save, Create, Continue
+   ========================================================= */
+
+.btn-primary,
+.primary-button {
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    115deg,
+    var(--primary),
+    var(--primary-2)
+  );
+
+  box-shadow: 0 8px 16px rgba(81, 70, 229, 0.18);
+}
+
+
+.btn-primary:hover,
+.primary-button:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 11px 22px rgba(81, 70, 229, 0.25);
+}
+
+
+/* =========================================================
+   3. SECONDARY BUTTON
+   Alternative actions: Cancel, Back, View Details
+   ========================================================= */
+
+.btn-secondary,
+.secondary-button {
+
+  color: var(--text);
+
+  background: var(--surface);
+
+  border-color: var(--line);
+}
+
+
+.btn-secondary:hover,
+.secondary-button:hover {
+
+  color: var(--primary);
+
+  background: var(--surface-2);
+
+  border-color: var(--primary);
+}
+
+
+/* =========================================================
+   4. DANGER BUTTON
+   Destructive actions: Delete, Remove
+   ========================================================= */
+
+.btn-danger,
+.danger-button {
+
+  color: #ffffff;
+
+  background: #e95f6f;
+
+  border-color: transparent;
+}
+
+
+.btn-danger:hover,
+.danger-button:hover {
+
+  background: #d94b5d;
+
+  border-color: transparent;
+}
+
+
+/* =========================================================
+   5. SMALL BUTTON
+   Compact actions
+   ========================================================= */
+
+.btn-sm,
+.btn.small,
+button.small {
+
+  min-height: 36px;
+
+  padding: 0 var(--space-3);
+
+  font-size: var(--font-size-sm);
+
+}
+
+
+/* =========================================================
+   6. LARGE BUTTON
+   Prominent actions
+   ========================================================= */
+
+.btn-lg {
+
+  min-height: 48px;
+
+  padding: 0 var(--space-5);
+
+  font-size: var(--font-size-base);
+
+}
+
+
+/* =========================================================
+   7. FULL-WIDTH BUTTON
+   Useful for forms and mobile layouts
+   ========================================================= */
+
+.btn-full,
+.full-button {
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   8. ICON BUTTON
+   Icon-only actions
+   ========================================================= */
+
+.icon-button {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  padding: 0;
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+
+  background: var(--surface);
+  color: var(--muted);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.icon-button:hover {
+
+  color: var(--primary);
+
+  background: var(--primary-soft);
+
+  border-color: var(--primary);
+}
+
+
+/* =========================================================
+   9. TEXT BUTTON
+   Minimal actions without a background
+   ========================================================= */
+
+.text-button {
+
+  padding: var(--space-1) var(--space-2);
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary);
+
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+
+  cursor: pointer;
+}
+
+
+.text-button:hover {
+
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   10. CIRCULAR SECONDARY BUTTON
+   ========================================================= */
+
+.round-secondary {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-round);
+
+  background: var(--surface);
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+.round-secondary:hover {
+
+  color: var(--primary);
+
+  border-color: var(--primary);
+
+  background: var(--primary-soft);
+}
+
+
+/* =========================================================
+   11. ACTIVE STATE
+   ========================================================= */
+
+.btn:active,
+.primary-button:active,
+.secondary-button:active,
+.danger-button:active,
+.icon-button:active {
+
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   12. KEYBOARD ACCESSIBILITY
+   ========================================================= */
+
+.btn:focus-visible,
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.danger-button:focus-visible,
+.icon-button:focus-visible,
+.text-button:focus-visible,
+.round-secondary:focus-visible {
+
+  outline: 2px solid var(--primary);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   13. DISABLED STATE
+   ========================================================= */
+
+.btn:disabled,
+.primary-button:disabled,
+.secondary-button:disabled,
+.danger-button:disabled,
+.icon-button:disabled,
+.text-button:disabled,
+.round-secondary:disabled {
+
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   14. MOBILE RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .btn,
+  .primary-button,
+  .secondary-button,
+  .danger-button {
+
+    min-height: 46px;
+
+  }
+
+  .btn-sm,
+  .btn.small,
+  button.small {
+
+    min-height: 38px;
+
+  }
+
+}
+
+
+/* =========================================================
+   15. REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .btn,
+  .primary-button,
+  .secondary-button,
+  .danger-button,
+  .icon-button,
+  .text-button,
+  .round-secondary {
+
+    transition: none;
+
+  }
+
+}
