@@ -1,0 +1,189 @@
+/* ==========================================================================
+   StudentHub - reset.css
+   Purpose: Remove inconsistent browser defaults so every browser starts
+            from the same clean baseline.
+   Rules:   - No colours, fonts or spacing values here (those live in
+              variables.css).
+            - Do not add component or page styles here.
+   Loaded:  FIRST, before variables.css (see section 8 of the project doc).
+   ========================================================================== */
+
+
+/* 1. Box sizing
+   Padding and border are included in an element's width and height.
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* 2. Remove default margins and padding
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 3. Document
+   -------------------------------------------------------------------------- */
+html {
+  /* Stop iOS/Android from resizing text after rotation */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Keep anchor jumps from being hidden under a sticky navbar */
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+
+/* 4. Text
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  overflow-wrap: break-word;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+
+/* 5. Links
+   -------------------------------------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* 6. Lists
+   Lists with a class or role are used for layout (navbar, cards), so the
+   bullets are removed. Plain text lists keep their bullets.
+   -------------------------------------------------------------------------- */
+ul[class],
+ol[class],
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+
+/* 7. Media
+   Images and similar elements never overflow their container.
+   -------------------------------------------------------------------------- */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+
+/* 8. Form controls
+   Inputs do not inherit fonts by default. Fix that so forms match the page.
+   -------------------------------------------------------------------------- */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+/* Remove the number input spinners in Firefox for a consistent look */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+/* 9. Tables
+   -------------------------------------------------------------------------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* 10. Hidden attribute
+   Make sure [hidden] always wins over display rules in other files.
+   -------------------------------------------------------------------------- */
+[hidden] {
+  display: none !important;
+}
+
+
+/* 11. Accessibility
+   Users who ask their system for less motion get (almost) no animation.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
