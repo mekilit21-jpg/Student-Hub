@@ -1,0 +1,68 @@
+/* Breakpoints
+   Phone:   up to 767px (base styles live in the other files)
+   Tablet:  min-width: 768px
+   Desktop: min-width: 1024px
+   Everyone must use these numbers. */
+
+/* ---------- Layout from main.css: collapse columns on smaller screens ----------
+   main.css has the desktop layout as its base and may not use media
+   queries, so these two rules use max-width (one pixel below the breakpoints). */
+@media (max-width: 1023px) {
+  .app-shell {
+    grid-template-columns: minmax(0, 1fr); /* navbar on top, page below */
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Tablet: top bar with a row of links ---------- */
+@media (min-width: 768px) {
+  .navbar-toggle {
+    display: none; /* no menu button on bigger screens */
+  }
+  .navbar-links {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding-top: 0;
+    gap: var(--space-1);
+  }
+  .navbar-link.active {
+    box-shadow: inset 0 -3px 0 var(--primary); /* line under the link */
+  }
+}
+
+/* ---------- Desktop: left sidebar (matches Figma) ---------- */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .navbar {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100%;
+    padding: var(--space-6) var(--space-4);
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+  .navbar-brand {
+    margin-bottom: var(--space-6);
+  }
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  .navbar-link.active {
+    box-shadow: inset 3px 0 0 var(--primary); /* line on the left */
+  }
+}

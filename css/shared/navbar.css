@@ -1,0 +1,75 @@
+/*
+ * NAVBAR STYLES (mobile-first: these are the phone layout)
+ * Markup built by navbar.js, placed inside <aside class="sidebar">:
+ *   .navbar > .navbar-brand, .navbar-toggle,
+ *             .navbar-links > li > .navbar-link
+ * States: .navbar-links.is-open, .navbar-link.active
+ * Tablet (top bar) and desktop (sidebar) layouts are in responsive.css.
+ * Only tokens from variables.css are used, so dark mode works by itself.
+ */
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+}
+
+.navbar-brand {
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.navbar-toggle {
+  min-width: 44px;
+  min-height: 44px; /* easy to tap */
+  padding: 0 var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.navbar-links {
+  display: none; /* hidden on phone until the button is pressed */
+  flex-direction: column;
+  width: 100%;
+  padding-top: var(--space-2);
+}
+
+.navbar-links.is-open {
+  display: flex;
+}
+
+.navbar-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px; /* easy to tap */
+  padding: var(--space-2) var(--space-4);
+  color: var(--text);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-md);
+}
+
+/* main.css underlines every link on hover; keep nav links clean */
+.navbar-link:hover,
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+.navbar-link:hover {
+  background: var(--surface-2);
+}
+
+/* Active page: bold + soft background + a line (not only colour) */
+.navbar-link.active {
+  font-weight: var(--font-weight-bold);
+  background: var(--primary-soft);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
