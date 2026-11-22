@@ -57,6 +57,8 @@
   --primary-2: #6f65eb;
   --primary-soft: #eeedff;
   --teal: #14b8a6;
+ --sidebar-text: #ffffff; 
+ --sidebar-muted: #9ba5ba; 
 
   /* =========================================================
      LIGHT THEME — existing Figma Make values
@@ -175,6 +177,7 @@
 
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
+
 
 /*
   Integration note:
