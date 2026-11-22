@@ -1,0 +1,120 @@
+/* ==========================================================================
+   StudentHub - responsive.css
+   Owner: Zenamarkos
+   Purpose: Global breakpoints for every page (FR-NAV-05, NFR-02).
+            Mobile-first: the rules without a media query are the PHONE
+            layout. Bigger screens add rules inside @media.
+   Loaded:  LAST on every page, so it wins over the other files.
+
+   BREAKPOINTS (CSS variables do not work inside @media, so the numbers are
+   written out. Everyone must use these numbers.)
+     Phone:   up to 767px (normal styles in the other files)
+     Tablet:  @media (min-width: 768px)
+     Desktop: @media (min-width: 1024px)  (reserved for page owners)
+
+   What lives here:     the app-shell columns, the sidebar on tablet/desktop
+                        (static, collapsible to icons), page spacing.
+   What does NOT live here: page-specific rules (use css/<page>.css),
+                        raw colours or fonts, overflow-x: hidden on body.
+   ========================================================================== */
+
+
+/* 1. Phone (base)
+   main.css sets two columns for everyone, so phones go back to one column.
+   The sidebar is a drawer (navbar.css) and does not take a column.
+   -------------------------------------------------------------------------- */
+.app-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.grid-2 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.topbar {
+  padding-inline: var(--space-4);
+}
+
+.container {
+  padding-inline: var(--space-4);
+}
+
+/* Keep the end of the page clear of the floating bottom bar */
+.page {
+  padding-bottom: var(--bottom-nav-space);
+}
+
+
+/* 2. Tablet and up (768px+)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  /* Two columns again. Collapsing only changes the first column's width. */
+  .app-shell {
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  }
+
+  .app-shell.is-collapsed {
+    --sidebar-width: var(--sidebar-width-collapsed);
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topbar,
+  .container {
+    padding-inline: var(--space-6);
+  }
+
+  .page {
+    padding-bottom: var(--space-6);
+  }
+
+  /* The drawer becomes a normal sidebar that stays in view while scrolling */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    z-index: auto;
+    width: auto;
+    height: 100vh;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .sidebar-collapse {
+    display: grid;
+  }
+
+  /* No phone navigation on bigger screens */
+  .bottom-nav,
+  .sidebar-backdrop {
+    display: none;
+  }
+
+  /* Collapsed: icons only. The labels stay in the page for screen readers. */
+  .app-shell.is-collapsed .sidebar-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .app-shell.is-collapsed .sidebar {
+    padding-inline: var(--space-3);
+  }
+
+  .app-shell.is-collapsed .sidebar-header {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .app-shell.is-collapsed .sidebar-link,
+  .app-shell.is-collapsed .sidebar-user {
+    justify-content: center;
+  }
+}

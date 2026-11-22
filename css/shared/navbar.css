@@ -1,0 +1,301 @@
+/* ==========================================================================
+   StudentHub - navbar.css
+   Owner: Zenamarkos
+   Purpose: Look of the navigation (FR-NAV-01 to 04).
+            This file is the PHONE layout: the sidebar is a slide-in drawer
+            and a floating bar sits at the bottom of the screen.
+            The desktop/tablet layout (static sidebar, collapse to icons,
+            no bottom bar) is in responsive.css.
+   Rules:   - Colours, fonts, spacing and radii come from variables.css.
+              No raw colour codes.
+            - Needs two tokens from Kidus: --sidebar-text, --sidebar-muted.
+            - No page-specific styles.
+   Loaded:  Before main.css (see main.css header).
+
+   CLASS NAMES (built by navbar.js)
+     .sidebar               the <aside> (drawer on phone). .is-open = shown
+     .sidebar-header        logo row
+     .sidebar-brand         logo + name link
+     .sidebar-logo          the purple logo square
+     .sidebar-collapse      desktop collapse button (hidden on phone)
+     .sidebar-nav           the links area
+     .sidebar-section       small "Workspace" label
+     .sidebar-links         the list
+     .sidebar-link          one link. .active = current page
+     .sidebar-label         any text that hides when the sidebar is collapsed
+     .sidebar-user          user card at the bottom
+     .sidebar-avatar / .sidebar-user-text / .sidebar-user-name /
+     .sidebar-user-role     parts of the user card
+     .sidebar-backdrop      dark layer behind the open drawer
+     .bottom-nav            floating bar at the bottom of the phone screen
+     .bottom-nav-list       its list
+     .bottom-link           one tab or the More button. .active = current page
+     .nav-icon              every icon
+   ========================================================================== */
+
+
+/* 1. Local tokens (only navbar needs them)
+   -------------------------------------------------------------------------- */
+:root {
+  --bottom-nav-height: 64px;
+  --bottom-nav-space: 96px; /* room left under the page content */
+  --nav-transition: 0.2s ease;
+}
+
+
+/* 2. Icons
+   -------------------------------------------------------------------------- */
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+
+/* 3. Sidebar = drawer on phone
+   Off-screen until .is-open is added. visibility: hidden keeps the hidden
+   links out of the Tab order. The delay lets the slide finish first.
+   -------------------------------------------------------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: min(var(--sidebar-width), 85vw);
+  padding: var(--space-4);
+  overflow-y: auto;
+  background-color: var(--sidebar);
+  color: var(--sidebar-text);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform var(--nav-transition),
+              visibility 0s linear 0.2s;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background-color: color-mix(in srgb, var(--sidebar) 70%, transparent);
+}
+
+
+/* 4. Header: logo and collapse button
+   -------------------------------------------------------------------------- */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  color: var(--sidebar-text);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.sidebar-brand:hover {
+  text-decoration: none;
+}
+
+.sidebar-logo {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: var(--sidebar-text);
+}
+
+/* Only useful on tablet/desktop, so it is hidden here */
+.sidebar-collapse {
+  display: none;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  color: var(--sidebar-muted);
+}
+
+.sidebar-collapse:hover {
+  color: var(--sidebar-text);
+}
+
+
+/* 5. Links
+   -------------------------------------------------------------------------- */
+.sidebar-nav {
+  flex: 1;
+  padding-top: var(--space-2);
+}
+
+.sidebar-section {
+  margin-bottom: var(--space-2);
+  padding-inline: var(--space-3);
+  font-size: var(--font-size-md-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sidebar-muted);
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px; /* easy to tap */
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  color: var(--sidebar-muted);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--nav-transition),
+              color var(--nav-transition);
+}
+
+.sidebar-link:hover {
+  background-color: color-mix(in srgb, var(--sidebar-text) 8%, transparent);
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+
+/* Current page: filled pill + bold text (not only a colour change) */
+.sidebar-link.active {
+  background-color: var(--primary);
+  color: var(--sidebar-text);
+  font-weight: var(--font-weight-bold);
+}
+
+
+/* 6. User card
+   -------------------------------------------------------------------------- */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--sidebar-text) 15%, transparent);
+}
+
+.sidebar-avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--primary-2);
+  color: var(--sidebar-text);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.sidebar-user-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  overflow: hidden;
+  color: var(--sidebar-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-user-role {
+  color: var(--sidebar-muted);
+  font-size: var(--font-size-md-sm);
+}
+
+
+/* 7. Bottom bar (phone only; responsive.css hides it from 768px)
+   Floating rounded bar like the design. z-index 20 sits above the top bar (10)
+   and below the backdrop (30) and the drawer (40).
+   -------------------------------------------------------------------------- */
+.bottom-nav {
+  position: fixed;
+  right: var(--space-3);
+  bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  left: var(--space-3);
+  z-index: 20;
+  min-height: var(--bottom-nav-height);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-2xl);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-elevated);
+}
+
+.bottom-nav-list {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.bottom-nav-list > li {
+  flex: 1;
+  min-width: 0;
+}
+
+.bottom-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-height: 56px; /* easy to tap */
+  padding: var(--space-1);
+  color: var(--muted);
+  font-size: var(--font-size-md-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.bottom-link:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* The icon sits in a soft pill; the active one is filled */
+.bottom-link .nav-icon {
+  width: 40px;
+  height: 32px;
+  padding: 6px 10px;
+  border-radius: var(--radius-lg);
+}
+
+.bottom-link.active {
+  color: var(--primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.bottom-link.active .nav-icon {
+  background-color: var(--primary-soft);
+}
