@@ -1,51 +1,61 @@
 /* ==========================================================================
    StudentHub - main.css
+   Owner: Meklit (Team Leader)
    Purpose: Global base styles and layout shared by ALL pages:
             app shell (sidebar + main area), top bar, page container,
             headings, grid helpers, empty states and small utilities.
-   Rules:   - Every colour, font and spacing value comes from variables.css.
-              Nothing is hardcoded.
+   Rules:   - Colours, fonts, spacing, radii and sidebar width come from
+              variables.css (owned by Kidus). Nothing is hardcoded.
             - No media queries here. Breakpoints live in responsive.css.
-            - Do not style buttons, cards, forms or the navbar/sidebar here
+            - Do not style buttons, cards, forms or the sidebar here
               (they belong to their own shared files).
             - Do not add page-specific styles. Use css/<page>.css instead.
    Loaded:  After navbar.css, before the page CSS and responsive.css.
 
-   Required variables (defined by the designers in variables.css):
-     Colours : --color-bg, --color-surface, --color-text,
-               --color-text-muted, --color-primary, --color-border
-     Fonts   : --font-family, --font-size-base, --font-size-sm,
-               --font-size-lg, --font-size-xl, --font-size-xxl,
-               --font-weight-normal, --font-weight-medium,
-               --font-weight-bold, --line-height-base
-     Spacing : --space-xs, --space-sm, --space-md, --space-lg,
-               --space-xl, --space-xxl
-     Other   : --radius-md, --container-max-width, --focus-ring-width,
-               --sidebar-width, --topbar-height, --transition-fast
+   Tokens used from variables.css:
+     Colours : --bg, --surface, --text, --muted, --primary, --line
+     Fonts   : --font-body, --font-heading, --font-size-base,
+               --font-size-md-sm, --font-size-lg, --font-size-xl,
+               --font-size-2xl, --font-weight-regular,
+               --font-weight-medium, --font-weight-bold
+     Spacing : --space-1, --space-2, --space-4, --space-6, --space-8
+     Shape   : --radius-card
+     Layout  : --sidebar-width
 
-   Theme:   The design has a light/dark toggle. Dark is the default.
-            variables.css redefines the colours under
-            :root[data-theme="light"]. This file needs no changes for it.
+   Theme:   Light is the default. Adding the .dark class to <html>
+            switches every variable to the dark palette (see variables.css).
+            This file needs no changes for it.
    ========================================================================== */
 
 
-/* 1. Base: body and text
+/* 1. Layout tokens that only main.css needs
+   Not in variables.css. If Kidus adds them there later, delete them here.
    -------------------------------------------------------------------------- */
-:root[data-theme="dark"] {
-  color-scheme: dark;
+:root {
+  --container-max-width: 1200px;
+  --topbar-height: 72px;
+  --focus-ring-width: 2px;
+  --transition-fast: 0.2s ease;
 }
 
-:root[data-theme="light"] {
+
+/* 2. Base: body and text
+   -------------------------------------------------------------------------- */
+:root {
   color-scheme: light;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--bg);
   transition: background-color var(--transition-fast),
               color var(--transition-fast);
 }
@@ -54,13 +64,14 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   line-height: 1.25;
-  color: var(--color-text);
+  color: var(--text);
 }
 
 h1 {
-  font-size: var(--font-size-xxl);
+  font-size: var(--font-size-2xl);
 }
 
 h2 {
@@ -76,11 +87,11 @@ h4 {
 }
 
 p + p {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-2);
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--primary);
 }
 
 a:hover {
@@ -89,31 +100,32 @@ a:hover {
 
 hr {
   border: none;
-  border-top: 1px solid var(--color-border);
-  margin-block: var(--space-lg);
+  border-top: 1px solid var(--line);
+  margin-block: var(--space-6);
 }
 
 
-/* 2. Keyboard focus
+/* 3. Keyboard focus
    Visible focus ring for keyboard users on every interactive element.
    -------------------------------------------------------------------------- */
 :focus-visible {
-  outline: var(--focus-ring-width) solid var(--color-primary);
+  outline: var(--focus-ring-width) solid var(--primary);
   outline-offset: 2px;
 }
 
 
-/* 3. Text selection
+/* 4. Text selection
    -------------------------------------------------------------------------- */
 ::selection {
-  background-color: var(--color-primary);
-  color: var(--color-surface);
+  background-color: var(--primary);
+  color: var(--surface);
 }
 
 
-/* 4. App shell
+/* 5. App shell
    Layout used by every page (sidebar on the left, content on the right):
 
+     <html class="dark">            <!-- class "dark" only in dark mode -->
      <body class="tasks-page">
        <div class="app-shell">
          <aside class="sidebar"> ...rendered by navbar.js... </aside>
@@ -132,8 +144,8 @@ hr {
        </div>
      </body>
 
-   The sidebar's own look (colours, links, active state, mobile menu) is
-   styled in navbar.css. On small screens responsive.css changes
+   The sidebar's own look (links, active state, collapsed width, mobile
+   menu) is styled in navbar.css. On small screens responsive.css changes
    .app-shell to a single column.
    -------------------------------------------------------------------------- */
 .app-shell {
@@ -151,7 +163,7 @@ hr {
 }
 
 
-/* 5. Top bar
+/* 6. Top bar
    Small label ("Student workspace") + page title on the left,
    page-level actions on the right.
    -------------------------------------------------------------------------- */
@@ -162,11 +174,11 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  gap: var(--space-4);
   min-height: var(--topbar-height);
-  padding: var(--space-sm) var(--space-lg);
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-6);
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 
 .topbar-title {
@@ -176,52 +188,52 @@ hr {
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-2);
 }
 
 /* Small uppercase label above a title */
 .eyebrow {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md-sm);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--muted);
 }
 
 
-/* 6. Page content
+/* 7. Page content
    -------------------------------------------------------------------------- */
 .page {
   flex: 1;
-  padding-block: var(--space-lg);
+  padding-block: var(--space-6);
 }
 
 .container {
   width: 100%;
   max-width: var(--container-max-width);
   margin-inline: auto;
-  padding-inline: var(--space-lg);
+  padding-inline: var(--space-6);
 }
 
 .page-header {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-6);
 }
 
 .page-header p {
-  margin-top: var(--space-xs);
-  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+  color: var(--muted);
 }
 
 .page-section + .page-section {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-8);
 }
 
 .section-title {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-4);
 }
 
 
-/* 7. Layout helpers
+/* 8. Layout helpers
    Simple building blocks so page CSS does not repeat common layouts.
    -------------------------------------------------------------------------- */
 
@@ -229,14 +241,14 @@ hr {
    No media query needed. */
 .grid {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-4);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
 }
 
 /* Fixed two-column grid (responsive.css collapses it on phones) */
 .grid-2 {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-4);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -244,7 +256,7 @@ hr {
 .stack {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-4);
 }
 
 /* Horizontal row that wraps when there is not enough space */
@@ -252,7 +264,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-2);
 }
 
 .row-between {
@@ -260,20 +272,20 @@ hr {
 }
 
 
-/* 8. Empty state
+/* 9. Empty state
    Friendly message shown when there is no data (FR-DASH-05, FR-PROG-04).
    Markup: <div class="empty-state"><p>No tasks yet.</p></div>
    -------------------------------------------------------------------------- */
 .empty-state {
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-8) var(--space-4);
   text-align: center;
-  color: var(--color-text-muted);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-card);
 }
 
 
-/* 9. Utilities
+/* 10. Utilities
    Small single-purpose classes. Keep this list short.
    -------------------------------------------------------------------------- */
 
@@ -291,7 +303,7 @@ hr {
 }
 
 .text-muted {
-  color: var(--color-text-muted);
+  color: var(--muted);
 }
 
 .text-center {
