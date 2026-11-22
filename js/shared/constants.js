@@ -3,7 +3,8 @@ export const STORAGE_KEYS = Object.freeze({
   TASKS: "studenthub_tasks",
   COURSES: "studenthub_courses",
   SESSIONS: "studenthub_sessions",
-  FOCUS: "studenthub_focus"
+  FOCUS: "studenthub_focus",
+  SIDEBAR: "studenthub_sidebar"
 });
 
 // Allowed task priorities.
