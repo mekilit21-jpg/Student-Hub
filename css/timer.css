@@ -1,0 +1,219 @@
+.timer-page .timer-menu-button {
+  display: grid;
+  place-items: center;
+  width: var(--button-height);
+  height: var(--button-height);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.timer-menu-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.timer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: clamp(var(--space-4), 5vw, var(--space-8));
+  text-align: center;
+}
+
+.timer-mode-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  margin-bottom: var(--space-8);
+  padding: var(--space-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-2);
+}
+
+.timer-mode {
+  flex: 1 1 auto;
+  min-height: var(--button-height);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.timer-mode:hover {
+  color: var(--text);
+}
+
+.timer-mode.is-active {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+.timer-mode-label {
+  color: var(--muted);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.timer-countdown {
+  margin-block: var(--space-2) var(--space-6);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--font-size-display), 14vw, calc(var(--font-size-display) * 2.5));
+  font-weight: var(--font-weight-extrabold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.timer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.timer-start {
+  min-width: 8rem;
+}
+
+.timer-status {
+  min-height: 1.5em;
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.timer-settings {
+  min-width: 0;
+}
+
+.timer-settings-form {
+  gap: var(--space-3);
+}
+
+.timer-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.timer-input-wrap .form-input {
+  min-width: 0;
+}
+
+.timer-input-wrap span {
+  color: var(--muted);
+  font-size: var(--font-size-md);
+}
+
+.timer-save-settings {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.timer-hint {
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: var(--font-size-md);
+}
+
+.timer-history {
+  grid-column: 1 / -1;
+}
+
+.timer-session-count {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  min-width: var(--button-height);
+  min-height: var(--button-height);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-empty {
+  padding: var(--space-6) var(--space-4);
+  line-height: 1.6;
+}
+
+.timer-session-list {
+  display: grid;
+  gap: var(--space-2);
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.timer-session-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+}
+
+.timer-session-duration {
+  color: var(--text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.timer-session-date {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: var(--font-size-md);
+}
+
+.timer-page :is(.timer-menu-button, .timer-mode):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .timer-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timer-history {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .timer-mode-selector {
+    border-radius: var(--radius-lg);
+  }
+
+  .timer-mode {
+    flex-basis: 100%;
+  }
+
+  .timer-session-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+}
