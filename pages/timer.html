@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Focus Timer | StudentHub</title>
+    <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/base/variables.css">
+    <link rel="stylesheet" href="../css/shared/buttons.css">
+    <link rel="stylesheet" href="../css/shared/cards.css">
+    <link rel="stylesheet" href="../css/shared/forms.css">
+    <link rel="stylesheet" href="../css/shared/navbar.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/timer.css">
+    <link rel="stylesheet" href="../css/shared/responsive.css">
+    <script type="module" src="../js/timer.js"></script>
+  </head>
+  <body class="timer-page">
+    <div class="app-shell">
+      <aside class="sidebar" id="navbar"></aside>
+
+      <div class="app-main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Student workspace</p>
+            <h1 class="topbar-title">Focus Timer</h1>
+          </div>
+          <div class="topbar-actions">
+            <button
+              class="timer-menu-button"
+              type="button"
+              data-nav-toggle
+              aria-expanded="false"
+              aria-controls="navbar"
+              aria-label="Open navigation menu"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <main class="page">
+          <div class="container">
+            <header class="page-header">
+              <h2>Make time for focused work</h2>
+              <p>Work in a focused block, then take a restorative break.</p>
+            </header>
+
+            <div class="timer-layout">
+              <section class="card timer-card" aria-labelledby="timer-heading">
+                <div class="timer-mode-selector" role="group" aria-label="Timer mode">
+                  <button class="timer-mode is-active" type="button" data-mode="focus" aria-pressed="true">
+                    Focus
+                  </button>
+                  <button class="timer-mode" type="button" data-mode="shortBreak" aria-pressed="false">
+                    Short Break
+                  </button>
+                  <button class="timer-mode" type="button" data-mode="longBreak" aria-pressed="false">
+                    Long Break
+                  </button>
+                </div>
+
+                <h2 class="sr-only" id="timer-heading">Focus countdown</h2>
+                <p class="timer-mode-label" id="timer-mode-label">Focus session</p>
+                <div
+                  class="timer-countdown"
+                  id="timer-display"
+                  role="timer"
+                  aria-live="off"
+                  aria-label="25 minutes remaining"
+                >25:00</div>
+
+                <div class="timer-controls" aria-label="Timer controls">
+                  <button class="btn btn-primary timer-start" id="timer-start" type="button">Start</button>
+                  <button class="btn btn-primary timer-start" id="timer-pause" type="button" hidden>Pause</button>
+                  <button class="btn btn-secondary" id="timer-reset" type="button">Reset</button>
+                </div>
+                <p class="timer-status" id="timer-status" role="status" aria-live="polite">
+                  Ready when you are.
+                </p>
+              </section>
+
+              <section class="card timer-settings" aria-labelledby="settings-heading">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title" id="settings-heading">Session lengths</h2>
+                    <p class="card-subtitle">Choose a duration in minutes.</p>
+                  </div>
+                </div>
+
+                <form class="form timer-settings-form" id="timer-settings-form">
+                  <div class="form-group">
+                    <label class="form-label" for="focus-minutes">Focus</label>
+                    <div class="timer-input-wrap">
+                      <input class="form-input" id="focus-minutes" name="focus" type="number" min="1" max="180" step="1" required>
+                      <span aria-hidden="true">min</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="short-break-minutes">Short break</label>
+                    <div class="timer-input-wrap">
+                      <input class="form-input" id="short-break-minutes" name="shortBreak" type="number" min="1" max="180" step="1" required>
+                      <span aria-hidden="true">min</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="long-break-minutes">Long break</label>
+                    <div class="timer-input-wrap">
+                      <input class="form-input" id="long-break-minutes" name="longBreak" type="number" min="1" max="180" step="1" required>
+                      <span aria-hidden="true">min</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-secondary timer-save-settings" type="submit">Save durations</button>
+                </form>
+                <p class="timer-hint">Durations can be set from 1 to 180 minutes.</p>
+              </section>
+
+              <section class="card timer-history" aria-labelledby="history-heading">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title" id="history-heading">Completed focus sessions</h2>
+                    <p class="card-subtitle">Your finished focus blocks, saved on this device.</p>
+                  </div>
+                  <span class="timer-session-count" id="session-count" aria-label="0 completed sessions">0</span>
+                </div>
+                <p class="empty-state timer-empty" id="session-empty">No completed focus sessions yet. Finish a focus timer and it will appear here.</p>
+                <ol class="timer-session-list" id="session-list" aria-label="Completed focus sessions" hidden></ol>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
