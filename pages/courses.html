@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Courses | StudentHub</title>
+
+    <link rel="stylesheet" href="../css/base/reset.css" />
+    <link rel="stylesheet" href="../css/base/variables.css" />
+    <link rel="stylesheet" href="../css/shared/buttons.css" />
+    <link rel="stylesheet" href="../css/shared/cards.css" />
+    <link rel="stylesheet" href="../css/shared/forms.css" />
+    <link rel="stylesheet" href="../css/shared/navbar.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/courses.css" />
+    <link rel="stylesheet" href="../css/shared/responsive.css" />
+  </head>
+
+  <body class="courses-page">
+    <div class="app-shell">
+      <aside class="sidebar" id="navbar"></aside>
+
+      <div class="app-main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Student workspace</p>
+            <h1 class="topbar-title">My Courses</h1>
+          </div>
+        </header>
+
+        <main class="page">
+          <div class="container">
+            <section class="page-header">
+              <h2>Course Manager</h2>
+              <p class="page-description">
+                Organize your courses and keep your academic information in one
+                place.
+              </p>
+            </section>
+
+            <!-- Course form -->
+            <section class="course-form-card">
+              <div class="section-heading">
+                <div>
+                  <h2 id="form-heading">Add a Course</h2>
+                  <p>Enter your course information below.</p>
+                </div>
+              </div>
+
+              <form id="course-form" class="form">
+                <div class="form-layout">
+                  <div class="form-group">
+                    <label class="form-label" for="course-name">
+                      Course Name *
+                    </label>
+
+                    <input
+                      class="form-input"
+                      type="text"
+                      id="course-name"
+                      name="name"
+                      placeholder="e.g. Introduction to Database Systems"
+                      required
+                    />
+
+                    <small class="error-message" id="name-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="course-code">
+                      Course Code *
+                    </label>
+
+                    <input
+                      class="form-input"
+                      type="text"
+                      id="course-code"
+                      name="code"
+                      placeholder="e.g. IS201"
+                      required
+                    />
+
+                    <small class="error-message" id="code-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="course-instructor">
+                      Instructor
+                    </label>
+
+                    <input
+                      class="form-input"
+                      type="text"
+                      id="course-instructor"
+                      name="instructor"
+                      placeholder="Instructor's name"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="course-schedule">
+                      Schedule
+                    </label>
+
+                    <input
+                      class="form-input"
+                      type="text"
+                      id="course-schedule"
+                      name="schedule"
+                      placeholder="e.g. Monday, 10:00 AM"
+                    />
+                  </div>
+                </div>
+
+                <p class="course-message" id="form-message" role="alert"></p>
+
+                <div class="form-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    id="save-course"
+                  >
+                    Add Course
+                  </button>
+
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="cancel-edit"
+                    hidden
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <!-- Course list -->
+            <section class="courses-section">
+              <div class="section-heading">
+                <div>
+                  <h2>Your Courses</h2>
+                  <p id="course-count">0 courses</p>
+                </div>
+              </div>
+
+              <div
+                class="course-grid"
+                id="course-list"
+                aria-live="polite"
+              ></div>
+
+              <div class="empty-state" id="empty-state">
+                <h3>No courses yet</h3>
+                <p>Add your first course using the form above.</p>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="../js/courses.js"></script>
+  </body>
+</html>

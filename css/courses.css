@@ -1,0 +1,154 @@
+/* Course Manager page */
+
+.courses-page .page-description,
+.courses-page .section-heading p {
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+.courses-page .course-form-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+.courses-page .section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.courses-page .form-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.courses-page .form-actions {
+  margin-top: var(--space-4);
+}
+
+.courses-page .course-message {
+  color: var(--primary);
+  margin-top: var(--space-3);
+}
+
+.courses-page .course-message:empty {
+  display: none;
+}
+
+.courses-page .courses-section {
+  margin-top: var(--space-8);
+}
+
+.courses-page .course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.courses-page .course-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+
+.courses-page .course-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.courses-page .course-code {
+  display: inline-block;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+}
+
+.courses-page .course-card h3 {
+  overflow-wrap: anywhere;
+  margin-top: var(--space-3);
+}
+
+.courses-page .course-details {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.courses-page .course-detail {
+  display: grid;
+  gap: 2px;
+}
+
+.courses-page .course-detail-label {
+  color: var(--muted);
+  font-size: var(--font-size-md);
+}
+
+.courses-page .course-detail-value {
+  overflow-wrap: anywhere;
+}
+
+.courses-page .course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.courses-page .course-actions button {
+  flex: 1;
+}
+
+.courses-page .empty-state {
+  text-align: center;
+  padding: var(--space-8);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.courses-page .empty-state p {
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+.courses-page [hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1000px) {
+  .courses-page .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .courses-page .form-layout,
+  .courses-page .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .courses-page .course-form-card {
+    padding: var(--space-4);
+  }
+
+  .courses-page .section-heading {
+    align-items: flex-start;
+  }
+}
